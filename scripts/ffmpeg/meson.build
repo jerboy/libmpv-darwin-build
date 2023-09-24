@@ -46,7 +46,6 @@ common_options = [
     '--enable-network',
     '--enable-pthreads',
     '--enable-pic',
-    '--enable-libtls', # tls support (libressl)
     '--enable-safe-bitstream-reader',
     '--enable-stripping',
     '--enable-avcodec',
