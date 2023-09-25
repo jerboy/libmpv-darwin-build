@@ -165,6 +165,11 @@ IOS_OPTIONS=(
     -Daudiounit=enabled `# AudioUnit output for iOS`
 )
 
+TVOS_OPTIONS=(
+    `# audio output features`
+    -Dtvos=enabled `# AudioUnit output for iOS`
+)
+
 IOS_VIDEO_OPTIONS=(
     `# hwaccel features`
     -Dios-gl=enabled `# iOS OpenGL ES hardware decoding interop support`
@@ -187,7 +192,10 @@ elif [ "${OS}" == "ios" ]; then
     if [ "${VARIANT}" == "video" ]; then
         OPTIONS+=("${IOS_VIDEO_OPTIONS[@]}")
     fi
+elif [ "${OS}" == "tvos" ]; then
+    OPTIONS+=("${TVOS_OPTIONS[@]}")
 fi
+
 
 meson setup build \
     --cross-file ${PROJECT_DIR}/cross-files/${OS}-${ARCH}.ini \
