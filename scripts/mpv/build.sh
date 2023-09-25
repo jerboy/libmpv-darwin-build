@@ -5,9 +5,18 @@ set -u # treat unset variables as an error
 
 cd ${SRC_DIR}
 
+echo "###################### start build mpv for ${OS} ${ARCH} ${VARIANT}"
+
 patch -p1 <${PROJECT_DIR}/patches/mpv-fix-missing-objc.patch
+# tvos or tvos simulator
 if [ "${OS}" == "tvos" ]; then
+    echo "###################### start build mpv for tvos"
     patch -p1 <${PROJECT_DIR}/patches/mpv-subprocess.patch
+fi
+
+if [ "${OS}" == "tvossimulator" ]; then
+    echo "###################### start build mpv for tvos simulator"
+   patch -p1 <${PROJECT_DIR}/patches/mpv-subprocess.patch
 fi
 
 if [ "${VARIANT}" == "audio" ]; then
