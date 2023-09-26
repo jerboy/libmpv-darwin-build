@@ -10,6 +10,19 @@ if [ "${VARIANT}" == "audio" ]; then
     patch -p1 <${PROJECT_DIR}/patches/mpv-remove-libass.patch
 fi
 
+
+# tvos or tvos simulator
+if [ "${OS}" == "tvos" ]; then
+    echo "###################### start build mpv for tvos"
+    patch -p1 <${PROJECT_DIR}/patches/mpv-subprocess.patch
+fi
+
+if [ "${OS}" == "tvossimulator" ]; then
+    echo "###################### start build mpv for tvos simulator"
+   patch -p1 <${PROJECT_DIR}/patches/mpv-subprocess.patch
+fi
+
+
 DISABLE_ALL_OPTIONS=(
     `# booleans`
     -Dgpl=false `# GPL (version 2 or later) build`
