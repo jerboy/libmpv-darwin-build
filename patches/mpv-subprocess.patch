@@ -23,7 +23,7 @@ index a470808..e643863 100644
  
      subprocess_c = ctx.pick_first_matching_dep([
 -        ( "osdep/subprocess-posix.c",            "posix" ),
-+        ( "osdep/subprocess-posix.c",            "fork && !tvos && !tvossimulator" ),
++        ( "osdep/subprocess-posix.c",            "fork" ),
          ( "osdep/subprocess-win.c",              "win32-desktop" ),
          ( "osdep/subprocess-dummy.c" ),
      ])
