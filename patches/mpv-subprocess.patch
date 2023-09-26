@@ -1,21 +1,5 @@
-diff --git a/wscript b/wscript
-index 82f65b4..6197e00 100644
---- a/wscript
-+++ b/wscript
-@@ -261,6 +261,11 @@ iconv support use --disable-iconv.",
-         'desc': 'w32/dos paths',
-         'deps': 'os-win32 || os-cygwin',
-         'func': check_true
-+    }, {
-+        'name': 'fork',
-+        'desc': 'fork()',
-+        'func': check_statement('unistd.h', 'fork()'),
-+        'deps': '!mingw && !tvos',
-     }, {
-         'name': 'glob-posix',
-         'desc': 'glob() POSIX support',
 diff --git a/wscript_build.py b/wscript_build.py
-index a470808..e643863 100644
+index a470808..006334b 100644
 --- a/wscript_build.py
 +++ b/wscript_build.py
 @@ -258,7 +258,7 @@ def build(ctx):
@@ -23,7 +7,7 @@ index a470808..e643863 100644
  
      subprocess_c = ctx.pick_first_matching_dep([
 -        ( "osdep/subprocess-posix.c",            "posix" ),
-+        ( "osdep/subprocess-posix.c",            "fork" ),
++        ( "osdep/subprocess-posix.c",            "posix && !tvos" ),
          ( "osdep/subprocess-win.c",              "win32-desktop" ),
          ( "osdep/subprocess-dummy.c" ),
      ])
