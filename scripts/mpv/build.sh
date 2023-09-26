@@ -183,6 +183,11 @@ IOS_VIDEO_OPTIONS=(
     -Dios-gl=enabled `# iOS OpenGL ES hardware decoding interop support`
 )
 
+TVOS_OPTIONS = (
+    `# audio output features`
+    -Daudiounit=enabled `# AudioUnit output for iOS`
+)
+
 OPTIONS=("${DISABLE_ALL_OPTIONS[@]}")
 
 OPTIONS+=("${COMMON_OPTIONS[@]}")
@@ -194,17 +199,20 @@ if [ "${OS}" == "macos" ]; then
     OPTIONS+=("${MACOS_OPTIONS[@]}")
     if [ "${VARIANT}" == "video" ]; then
         OPTIONS+=("${MACOS_VIDEO_OPTIONS[@]}")
-    fi
+    fi 
 elif [ "${OS}" == "ios" ]; then
     OPTIONS+=("${IOS_OPTIONS[@]}")
     if [ "${VARIANT}" == "video" ]; then
         OPTIONS+=("${IOS_VIDEO_OPTIONS[@]}")
     fi
+elif [ "${OS}" == "tvos" ]; then
+    OPTIONS+=("${TVOS_OPTIONS[@]}")
 fi
 
 meson setup build \
     --cross-file ${PROJECT_DIR}/cross-files/${OS}-${ARCH}.ini \
     --prefix="${OUTPUT_DIR}" \
+    --tvos
     "${OPTIONS[@]}" |
     tee configure.log
 
