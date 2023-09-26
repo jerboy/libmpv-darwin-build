@@ -772,7 +772,6 @@ ${INTERMEDIATE_DIR}/xcframeworks_%: \
 		${INTERMEDIATE_DIR}/frameworks_ios-arm64-$$(word 3,$$(subst -, ,$$*))-$$(word 4,$$(subst -, ,$$*)) \
 		${INTERMEDIATE_DIR}/frameworks_iossimulator-$$(word 2,$$(subst -, ,$$*))-$$(word 3,$$(subst -, ,$$*))-$$(word 4,$$(subst -, ,$$*)) \
 		${INTERMEDIATE_DIR}/frameworks_tvos-arm64-$$(word 3,$$(subst -, ,$$*))-$$(word 4,$$(subst -, ,$$*)) \
-		${INTERMEDIATE_DIR}/frameworks_tvossimulator-$$(word 2,$$(subst -, ,$$*))-$$(word 3,$$(subst -, ,$$*))-$$(word 4,$$(subst -, ,$$*)) \
 	, \
 		${INTERMEDIATE_DIR}/frameworks_$$(word 1,$$(subst -, ,$$*))-$$(word 2,$$(subst -, ,$$*))-$$(word 3,$$(subst -, ,$$*))-$$(word 4,$$(subst -, ,$$*)) \
 	)
