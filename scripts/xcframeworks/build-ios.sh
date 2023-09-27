@@ -28,6 +28,8 @@ find ${DEP1} -name "*.framework" -type d | while read FRAMEWORK; do
 
     echo ${FRAMEWORK_NAME}
 
+    echo "##################### framework ${FRAMEWORK_OS1}    ${FRAMEWORK_OS2}    ${FRAMEWORK_OUTPUT}"
+
     xcodebuild -create-xcframework \
         -framework ${FRAMEWORK_OS1} \
         -framework ${FRAMEWORK_OS2} \

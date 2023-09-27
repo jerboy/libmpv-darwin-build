@@ -185,7 +185,7 @@ IOS_VIDEO_OPTIONS=(
 
 TVOS_OPTIONS=(
     `# audio output features`
-    -Dtvos `# tvos`
+    -Dtvos=enable `# tvos`
 )
 
 OPTIONS=("${DISABLE_ALL_OPTIONS[@]}")
