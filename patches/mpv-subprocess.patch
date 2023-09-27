@@ -1,5 +1,5 @@
 diff --git a/meson.build b/meson.build
-index f9fe4e7..9efa904 100644
+index f9fe4e7..c292ce5 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -294,7 +294,13 @@ endif
@@ -13,7 +13,7 @@ index f9fe4e7..9efa904 100644
 +    error_message: 'the os is not darwin!',
 +)
 +
-+posix = not win32 and not tvos
++posix = not (win32 or tvos)
  
  features += {'darwin': darwin}
  features += {'posix': posix}
