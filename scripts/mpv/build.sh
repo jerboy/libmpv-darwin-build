@@ -212,7 +212,7 @@ fi
 meson setup build \
     --cross-file ${PROJECT_DIR}/cross-files/${OS}-${ARCH}.ini \
     --prefix="${OUTPUT_DIR}" \
-    --tvos
+    -Dtvos \
     "${OPTIONS[@]}" |
     tee configure.log
 

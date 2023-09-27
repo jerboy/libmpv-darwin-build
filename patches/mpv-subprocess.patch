@@ -1,3 +1,53 @@
+diff --git a/meson.build b/meson.build
+index f9fe4e7..9a30e3f 100644
+--- a/meson.build
++++ b/meson.build
+@@ -11,6 +11,8 @@ project('mpv',
+         ]
+ )
+ 
++option('tvos', type: 'boolean', description: 'Build for tvOS')
++
+ build_root = meson.project_build_root()
+ source_root = meson.project_source_root()
+ python = find_program('python3')
+@@ -294,7 +296,13 @@ endif
+ 
+ darwin = host_machine.system() == 'darwin'
+ win32 = host_machine.system() == 'cygwin' or host_machine.system() == 'windows'
+-posix = not win32
++
++tvos = get_option('tvos').require(
++    darwin,
++    error_message: 'the os is not darwin!',
++)
++
++posix = not win32 and not tvos
+ 
+ features += {'darwin': darwin}
+ features += {'posix': posix}
+@@ -1728,6 +1736,7 @@ if get_option('libmpv')
+     install_headers(headers, subdir: 'mpv')
+ endif
+ 
++
+ if get_option('cplayer')
+     datadir = get_option('datadir')
+     confdir = get_option('sysconfdir')
+diff --git a/meson_options.txt b/meson_options.txt
+index 5f2d31d..df7e9bd 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -117,6 +117,9 @@ option('macos-touchbar', type: 'feature', value: 'auto', description: 'macOS Tou
+ option('swift-build', type: 'feature', value: 'auto', description: 'macOS Swift build tools')
+ option('swift-flags', type: 'string', description: 'Optional Swift compiler flags')
+ 
++# tvos features
++option('tvos', type: 'feature', value: 'auto', description: 'tvOS support')
++
+ # manpages
+ option('html-build', type: 'feature', value: 'disabled', description: 'html manual generation')
+ option('manpage-build', type: 'feature', value: 'auto', description: 'manpage generation')
 diff --git a/wscript_build.py b/wscript_build.py
 index a470808..006334b 100644
 --- a/wscript_build.py
