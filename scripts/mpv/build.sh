@@ -185,7 +185,7 @@ IOS_VIDEO_OPTIONS=(
 
 TVOS_OPTIONS=(
     `# audio output features`
-    -Dtvos=enabled `# AudioUnit output for iOS`
+    -Dtvos `# tvos`
 )
 
 OPTIONS=("${DISABLE_ALL_OPTIONS[@]}")
@@ -205,14 +205,14 @@ elif [ "${OS}" == "ios" ]; then
     if [ "${VARIANT}" == "video" ]; then
         OPTIONS+=("${IOS_VIDEO_OPTIONS[@]}")
     fi
-elif [ "${OS}" == "tvos" ]; then
+elif [ "${OS}" == "tvos" ] || [ "${OS}" == "tvossimulator" ]; then
+    echo "############################ tvos or tvos simulator"
     OPTIONS+=("${TVOS_OPTIONS[@]}")
 fi
 
 meson setup build \
     --cross-file ${PROJECT_DIR}/cross-files/${OS}-${ARCH}.ini \
     --prefix="${OUTPUT_DIR}" \
-    -Dtvos \
     "${OPTIONS[@]}" |
     tee configure.log
 
