@@ -1,17 +1,8 @@
 diff --git a/meson.build b/meson.build
-index f9fe4e7..9a30e3f 100644
+index f9fe4e7..9efa904 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -11,6 +11,8 @@ project('mpv',
-         ]
- )
- 
-+option('tvos', type: 'boolean', description: 'Build for tvOS')
-+
- build_root = meson.project_build_root()
- source_root = meson.project_source_root()
- python = find_program('python3')
-@@ -294,7 +296,13 @@ endif
+@@ -294,7 +294,13 @@ endif
  
  darwin = host_machine.system() == 'darwin'
  win32 = host_machine.system() == 'cygwin' or host_machine.system() == 'windows'
@@ -26,7 +17,7 @@ index f9fe4e7..9a30e3f 100644
  
  features += {'darwin': darwin}
  features += {'posix': posix}
-@@ -1728,6 +1736,7 @@ if get_option('libmpv')
+@@ -1728,6 +1734,7 @@ if get_option('libmpv')
      install_headers(headers, subdir: 'mpv')
  endif
  
