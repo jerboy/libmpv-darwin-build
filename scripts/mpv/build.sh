@@ -183,9 +183,9 @@ IOS_VIDEO_OPTIONS=(
     -Dios-gl=enabled `# iOS OpenGL ES hardware decoding interop support`
 )
 
-TVOS_OPTIONS = (
+TVOS_OPTIONS=(
     `# audio output features`
-    -Daudiounit=enabled `# AudioUnit output for iOS`
+    -Dtvos=enabled `# AudioUnit output for iOS`
 )
 
 OPTIONS=("${DISABLE_ALL_OPTIONS[@]}")
